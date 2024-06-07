@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="login-container">
             <div class="logo-container">
-                <img src="logo2.png" alt="Logo da Empresa">
+                <img src="img/logo2.png" alt="Logo da Empresa">
             </div>
-        <h2>Faça o Login</h2>
+        <h2>Login</h2>
         <form action="processa_login.php" method="post">
             <div class="form-group">
                 <label for="username">Usuário:</label>
@@ -21,9 +21,11 @@
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="form-group">
-                <button type="submit">Entrar</button>
-            </div>
+            <button type="submit" onclick="window.location.href='index.html'">Entrar</button>
+
+            
+            
+            
         </form>
         <div class="forgot-password">
             <a href="recuperar_senha.html">Esqueceu sua senha?</a>

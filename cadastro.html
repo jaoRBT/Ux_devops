@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Novo Usuário</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Arquivo CSS principal -->
+</head>
+<body>
+    <div class="register-container">
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="img/logo2.png" alt="Logo da Empresa">
+            </div>
+        <h2>Cadastro de Novo Usuário</h2>
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="fullname">Nome Completo:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirmação de Senha:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Cadastrar</button>
+            </div>
+        </form>
+        <div class="login-link">
+            <p>Já tem uma conta? <a href="login.html">Faça o login</a></p>
+        </div>
+        <div class="success-message" id="successMessage">Cadastro realizado com sucesso!</div>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+</body>
+<script>
+    document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o envio do formulário
+
+        // Captura os valores dos campos
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confirm_password = document.getElementById('confirm_password').value;
+
+        // Valida os dados
+        if (!fullname || !email || !username || !password || !confirm_password) {
+            showErrorMessage('Por favor, preencha todos os campos.');
+            return;
+        }
+
+        if (password !== confirm_password) {
+            showErrorMessage('As senhas não coincidem.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            showErrorMessage('Por favor, insira um e-mail válido.');
+            return;
+        }
+
+        // Se tudo estiver certo, exibe a mensagem de sucesso
+        showSuccessMessage();
+    });
+
+    function showErrorMessage(message) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+    }
+
+    function showSuccessMessage() {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+    }
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
+</html>
